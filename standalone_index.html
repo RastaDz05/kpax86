@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Algerie.cool - Tchat DZ & Webradios Live</title>
+  <meta name="description" content="Le tchat nouvelle génération pour l'Algérie et la diaspora en France : salons en direct, webradios en streaming, vidéos YouTube détachables, profils colorés et modération avancée." />
+  <link rel="canonical" href="https://www.algerie.cool/" />
+  <meta property="og:url" content="https://www.algerie.cool/" />
+  <meta property="og:title" content="Algerie.cool - Tchat DZ & Webradios Live" />
+  <meta property="og:description" content="Le tchat nouvelle génération pour l'Algérie et la diaspora en France : salons en direct, webradios en streaming, vidéos YouTube détachables, profils colorés et modération avancée." />
+  <meta property="og:type" content="website" />
+  
+  <!-- Algerian Flag Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='16' height='32' fill='%23006233'/%3E%3Crect x='16' width='16' height='32' fill='%23ffffff'/%3E%3Cpath d='M18 10a7 7 0 1 0 0 12 6 6 0 1 1 0-12z' fill='%23d21034'/%3E%3Cpolygon points='18,13.5 19.3,15.2 21.5,14.8 20.2,16.5 21.5,18.2 19.3,17.8 18,19.5 18.2,17.3 16.5,16.5 18.2,15.7' fill='%23d21034'/%3E%3C/svg%3E" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            heading: ['"Cabinet Grotesk"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons & Confetti CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+    /* Custom scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.25); border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.45); }
+
+    /* Equalizer Bar Animations */
+    @keyframes eqBar1 { 0%, 100% { height: 4px; } 50% { height: 16px; } }
+    @keyframes eqBar2 { 0%, 100% { height: 12px; } 50% { height: 6px; } }
+    @keyframes eqBar3 { 0%, 100% { height: 8px; } 50% { height: 18px; } }
+    .animate-eq-1 { animation: eqBar1 0.8s ease-in-out infinite; }
+    .animate-eq-2 { animation: eqBar2 0.6s ease-in-out infinite 0.2s; }
+    .animate-eq-3 { animation: eqBar3 0.9s ease-in-out infinite 0.1s; }
+
+    .glow-theme {
+      box-shadow: 0 0 20px var(--theme-glow, rgba(16, 185, 129, 0.35));
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased overflow-hidden selection:bg-emerald-500 selection:text-white">
+
+  <!-- Dynamic Wallpaper Background Layer -->
+  <div id="wallpaper-bg" class="fixed inset-0 pointer-events-none transition-all duration-700 ease-in-out z-0 bg-cover bg-center bg-no-repeat scale-105" style="background-image: url('https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1920&auto=format&fit=crop');"></div>
+
+  <!-- Anti-Sabotage Contrast Protection Overlay -->
+  <div id="wallpaper-overlay" class="fixed inset-0 pointer-events-none transition-all duration-500 z-0 bg-slate-950/70 backdrop-blur-[2px]"></div>
+
+  <!-- App Wrapper -->
+  <div class="flex flex-col h-screen w-screen overflow-hidden relative z-10">
+
+    <!-- Top Navbar -->
+    <header class="h-16 bg-slate-900/90 border-b border-emerald-500/20 px-3 md:px-5 flex items-center justify-between gap-2 select-none backdrop-blur-md">
+      <!-- Brand & Emblem -->
+      <div class="flex items-center gap-3">
+        <a href="#" class="flex items-center gap-2.5 group">
+          <div class="w-10 h-10 rounded-xl bg-slate-800 border border-emerald-500/40 p-1 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform overflow-hidden">
+            <svg class="w-full h-full rounded" viewBox="0 0 32 32" fill="none">
+              <rect width="16" height="32" fill="#006233" />
+              <rect x="16" width="16" height="32" fill="#ffffff" />
+              <path d="M18 10a7 7 0 1 0 0 12 6 6 0 1 1 0-12z" fill="#d21034" />
+              <polygon points="18,13.5 19.3,15.2 21.5,14.8 20.2,16.5 21.5,18.2 19.3,17.8 18,19.5 18.2,17.3 16.5,16.5 18.2,15.7" fill="#d21034" />
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5 leading-none">
+              <span class="font-heading font-extrabold text-base md:text-lg tracking-tight text-white">
+                algerie<span id="brand-dot" class="text-emerald-400 transition-colors">.cool</span>
+              </span>
+              <span class="text-[10px] bg-red-600 text-white font-extrabold px-1.5 py-0.2 rounded-full uppercase tracking-wider">DZ</span>
+            </div>
+            <p class="text-[10px] text-slate-400 font-medium tracking-wide hidden sm:block">Tchat Live & Webradios Diaspora</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Center Quick Controls: Salons & Webradios -->
+      <div class="flex items-center gap-2">
+        <!-- Salons Button -->
+        <button id="btn-open-rooms" class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-800/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-all text-xs font-semibold shadow-sm">
+          <i data-lucide="hash" class="w-3.5 h-3.5 text-emerald-400"></i>
+          <span class="hidden sm:inline">Salons :</span>
+          <span id="nav-active-room" class="font-bold text-emerald-300 truncate max-w-[100px] md:max-w-none">#Général</span>
+          <span id="nav-room-count" class="text-[10px] bg-slate-700 text-slate-300 px-1.5 py-0.2 rounded-full">4</span>
+        </button>
+
+        <!-- Webradios Button -->
+        <button id="btn-open-radios" class="flex items-center gap-2 px-3 py-1.5 rounded-xl border border-slate-700/80 bg-slate-800/90 hover:bg-slate-800 text-slate-200 transition-all text-xs font-semibold shadow-sm">
+          <i data-lucide="radio" class="w-3.5 h-3.5 text-emerald-400"></i>
+          <span class="hidden md:inline">Webradios :</span>
+          <span id="nav-radio-name" class="truncate max-w-[90px] md:max-w-[120px]">Skyrock Alger</span>
+          <div id="nav-eq" class="flex items-end gap-0.5 h-3">
+            <span class="w-0.5 bg-emerald-400 rounded animate-eq-1 h-3 inline-block"></span>
+            <span class="w-0.5 bg-emerald-400 rounded animate-eq-2 h-2 inline-block"></span>
+            <span class="w-0.5 bg-emerald-400 rounded animate-eq-3 h-3.5 inline-block"></span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Right Controls: Sound, Zapper, Themes, Light/Dark, Profile -->
+      <div class="flex items-center gap-1.5">
+        <!-- Sound Bip Toggle -->
+        <button id="btn-toggle-sound" class="p-2 rounded-xl bg-slate-800 border border-slate-700 text-emerald-400 hover:text-emerald-300 transition-colors" title="Activer / Désactiver les sons">
+          <i data-lucide="volume-2" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Zapper Button (Mode IA) -->
+        <button id="btn-zap-wallpaper" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-600 text-slate-950 font-extrabold border border-white/20 transition-all text-xs hover:scale-105 active:scale-95 shadow-md" title="Zapper au fond suivant">
+          <i data-lucide="zap" class="w-3.5 h-3.5 fill-current"></i>
+          <span class="hidden sm:inline text-[11px] font-black">Zapper</span>
+        </button>
+
+        <!-- Themes Modal Button -->
+        <button id="btn-open-themes" class="p-2 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 hover:text-white transition-colors" title="Choisir le thème & fond d'écran">
+          <i data-lucide="image" class="w-4 h-4 text-emerald-400"></i>
+        </button>
+
+        <!-- Dark/Light Theme Switcher -->
+        <button id="btn-toggle-dark" class="p-2 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 hover:text-amber-400 transition-colors" title="Changer mode sombre / clair">
+          <i data-lucide="sun" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Toggle Userlist (mobile) -->
+        <button id="btn-toggle-userlist" class="p-2 rounded-xl bg-slate-800 border border-slate-700 text-slate-300 hover:text-emerald-400 transition-colors flex items-center gap-1.5 text-xs font-semibold">
+          <i data-lucide="users" class="w-4 h-4 text-emerald-400"></i>
+          <span id="nav-total-users" class="text-[11px] font-bold">4</span>
+        </button>
+
+        <!-- User Profile Pill -->
+        <button id="btn-open-auth" class="flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-xl bg-slate-800/90 hover:bg-slate-800 border border-slate-700 transition-all text-xs">
+          <div class="relative">
+            <span id="user-pill-flag" class="w-7 h-7 rounded-lg bg-slate-900 border border-slate-700 flex items-center justify-center text-xs">🇩🇿</span>
+            <span class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-500"></span>
+          </div>
+          <div class="text-left hidden sm:block">
+            <span id="user-pill-pseudo" class="block font-bold text-blue-400 truncate max-w-[90px] leading-tight">Visiteur_DZ</span>
+            <span id="user-pill-status" class="text-[10px] text-slate-400">Invité</span>
+          </div>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Body: Chat Workspace + Users Sidebar -->
+    <div class="flex-1 flex overflow-hidden relative">
+      <!-- Chat Room Container -->
+      <div class="flex-1 flex flex-col min-w-0 h-full">
+        <!-- Topic Banner -->
+        <div id="room-topic-bar" class="px-4 py-3 bg-slate-900/90 border-b border-emerald-500/20 backdrop-blur-md flex items-center justify-between gap-3 shadow-md">
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="sparkles" class="w-4 h-4 text-emerald-300"></i>
+            </div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <span id="topic-room-name" class="font-extrabold text-sm text-white tracking-wide">#Général</span>
+                <span id="topic-room-badge" class="text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 px-2 py-0.2 rounded-full border border-emerald-500/20">4 connectés</span>
+                <span id="topic-palette-tag" class="text-[10px] text-slate-400 hidden sm:inline">• Palette IA : Émeraude DZ</span>
+              </div>
+              <p id="topic-room-text" class="text-xs text-slate-300 font-medium truncate mt-0.5">
+                🇩🇿 Bienvenue sur Algerie.cool ! Le carrefour de la jeunesse et de la diaspora algérienne. Respect, convivialité & fierté ⵣ 🇩🇿 🇫🇷
+              </p>
+            </div>
+          </div>
+          <button id="btn-edit-topic" class="text-[11px] font-medium text-emerald-400 hover:text-emerald-300 px-2.5 py-1 rounded-md bg-slate-800/80 hover:bg-slate-800 border border-emerald-500/30 transition-colors flex-shrink-0">
+            Modifier topic
+          </button>
+        </div>
+
+        <!-- Messages Feed -->
+        <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3.5 scroll-smooth">
+          <!-- Welcome Box in Room -->
+          <div class="bg-gradient-to-r from-emerald-950/60 via-slate-900/80 to-emerald-950/50 p-4 rounded-2xl border border-emerald-500/30 text-center max-w-xl mx-auto my-3 shadow-lg backdrop-blur-md">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-2xl mb-2">🇩🇿</div>
+            <h2 class="text-base font-extrabold text-white">Bienvenue sur le salon #Général d'Algerie.cool !</h2>
+            <p class="text-xs text-slate-300 mt-1 max-w-md mx-auto">
+              Partagez, discutez et écoutez les meilleures webradios en direct. Double-cliquez sur n'importe quel pseudo pour démarrer une conversation privée (PV).
+            </p>
+            <div class="mt-2.5 flex items-center justify-center gap-2 flex-wrap text-[11px] text-emerald-300">
+              <span class="bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">⚡ Zéro lag</span>
+              <span class="bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">📻 Webradios intégrées</span>
+              <span class="bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">🎥 Vidéos YouTube PiP</span>
+            </div>
+          </div>
+
+          <!-- Message Container list is injected dynamically -->
+          <div id="messages-list" class="space-y-3"></div>
+        </div>
+
+        <!-- Chat Input Bar -->
+        <div class="p-2 sm:p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] bg-slate-900/95 border-t border-slate-800 backdrop-blur-md relative z-10">
+          <!-- Quick emoji touch strip for mobile / fast typing -->
+          <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1.5 text-sm select-none">
+            <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider hidden sm:inline mr-1">Rapide :</span>
+            <button type="button" onclick="insertQuickSmiley('🇩🇿')" class="px-2 py-0.5 rounded-lg bg-slate-950/80 hover:bg-slate-800 border border-slate-800 text-sm transition-transform active:scale-125 hover:scale-110 flex-shrink-0">🇩🇿</button>
+            <button type="button" onclick="insertQuickSmiley('❤️')" class="px-2 py-0.5 rounded-lg bg-slate-950/80 hover:bg-slate-800 border border-slate-800 text-sm transition-transform active:scale-125 hover:scale-110 flex-shrink-0">❤️</button>
+            <button type="button" onclick="insertQuickSmiley('🔥')" class="px-2 py-0.5 rounded-lg bg-slate-950/80 hover:bg-slate-800 border border-slate-800 text-sm transition-transform active:scale-125 hover:scale-110 flex-shrink-0">🔥</button>
+            <button type="button" onclick="insertQuickSmiley('😂')" class="px-2 py-0.5 rounded-lg bg-slate-950/80 hover:bg-slate-800 border border-slate-800 text-sm transition-transform active:scale-125 hover:scale-110 flex-shrink-0">😂</button>
+            <button type="button" onclick="insertQuickSmiley('😍')" class="px-2 py-0.5 rounded-lg bg-slate-950/80 hover:bg-slate-800 border border-slate-800 text-sm transition-transform active:scale-125 hover:scale-110 flex-shrink-0">😍</button>
+            <button type="button" onclick="insertQuickSmiley('ⵣ')" class="px-2 py-0.5 rounded-lg bg-slate-950/80 hover:bg-slate-800 border border-slate-800 text-sm transition-transform active:scale-125 hover:scale-110 flex-shrink-0">ⵣ</button>
+            <button type="button" onclick="insertQuickSmiley('☕')" class="px-2 py-0.5 rounded-lg bg-slate-950/80 hover:bg-slate-800 border border-slate-800 text-sm transition-transform active:scale-125 hover:scale-110 flex-shrink-0">☕</button>
+            <button type="button" onclick="insertQuickSmiley('⚽')" class="px-2 py-0.5 rounded-lg bg-slate-950/80 hover:bg-slate-800 border border-slate-800 text-sm transition-transform active:scale-125 hover:scale-110 flex-shrink-0">⚽</button>
+            <button type="button" onclick="insertQuickSmiley('🌹')" class="px-2 py-0.5 rounded-lg bg-slate-950/80 hover:bg-slate-800 border border-slate-800 text-sm transition-transform active:scale-125 hover:scale-110 flex-shrink-0">🌹</button>
+            <button type="button" onclick="insertQuickSmiley('✨')" class="px-2 py-0.5 rounded-lg bg-slate-950/80 hover:bg-slate-800 border border-slate-800 text-sm transition-transform active:scale-125 hover:scale-110 flex-shrink-0">✨</button>
+          </div>
+
+          <!-- Autocomplete commands dropdown -->
+          <div id="commands-popup" class="hidden absolute bottom-full left-2 right-2 sm:left-4 sm:right-4 mb-2 bg-slate-900/95 border border-emerald-500/40 rounded-xl p-3 shadow-2xl backdrop-blur-md max-h-56 overflow-y-auto z-40">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-800 text-xs text-emerald-400 font-bold">
+              <span>Commandes IRC : /ban, /kick, /mute, /warn, /clear, /admin, /op, /modo, /topic, /help</span>
+            </div>
+          </div>
+
+          <!-- Smileys Popup -->
+          <div id="smileys-popup" class="hidden fixed sm:absolute inset-x-0 sm:inset-x-auto bottom-0 sm:bottom-full sm:left-2 mb-0 sm:mb-2 bg-slate-900 border-t sm:border border-emerald-500/30 rounded-t-3xl sm:rounded-2xl p-4 sm:p-3 shadow-2xl z-50 w-full sm:w-72 max-h-[70vh] flex flex-col pb-[max(1rem,env(safe-area-inset-bottom))]">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-800 mb-2">
+              <span class="text-xs sm:text-xs font-bold text-slate-300">Smileys & Drapeaux DZ</span>
+              <button onclick="toggleSmileys(false)" class="text-slate-400 hover:text-white px-2 py-0.5 rounded bg-slate-800 text-xs">✕ Fermer</button>
+            </div>
+            <div id="smileys-grid" class="grid grid-cols-6 gap-2 text-2xl p-1 overflow-y-auto"></div>
+          </div>
+
+          <!-- Colors Popup -->
+          <div id="colors-popup" class="hidden fixed sm:absolute inset-x-0 sm:inset-x-auto bottom-0 sm:bottom-full sm:left-12 mb-0 sm:mb-2 bg-slate-900 border-t sm:border border-emerald-500/30 rounded-t-3xl sm:rounded-2xl p-4 sm:p-3 shadow-2xl z-50 w-full sm:w-72 max-h-[70vh] flex flex-col pb-[max(1rem,env(safe-area-inset-bottom))]">
+            <div class="flex items-center justify-between pb-2 border-b border-slate-800 mb-2">
+              <span class="text-xs sm:text-xs font-bold text-slate-300">Couleur de mon texte</span>
+              <button onclick="toggleColors(false)" class="text-slate-400 hover:text-white px-2 py-0.5 rounded bg-slate-800 text-xs">✕ Fermer</button>
+            </div>
+            <button id="btn-sync-ai-color" class="w-full mb-2.5 p-2 rounded-xl bg-slate-800/90 hover:bg-slate-800 border border-slate-700 flex items-center justify-between gap-2 text-left">
+              <div class="flex items-center gap-2 truncate">
+                <span id="ai-color-dot" class="w-4 h-4 rounded-full border border-white/40 bg-emerald-400"></span>
+                <div>
+                  <span class="text-[11px] font-bold text-slate-200 block">Couleur IA du Thème</span>
+                  <span id="ai-color-name" class="text-[10px] text-slate-400 block">Émeraude DZ</span>
+                </div>
+              </div>
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+            </button>
+            <div id="colors-grid" class="grid grid-cols-4 gap-2"></div>
+          </div>
+
+          <!-- Input Form -->
+          <form id="chat-form" class="flex items-center gap-1.5 sm:gap-2">
+            <div class="flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800 flex-shrink-0">
+              <button type="button" id="btn-smileys" class="min-h-[40px] min-w-[40px] p-2 rounded-lg text-amber-400 hover:text-amber-300 hover:bg-slate-800 transition-colors flex items-center justify-center active:scale-95" title="Smileys & Emojis">
+                <i data-lucide="smile" class="w-5 h-5"></i>
+              </button>
+              <button type="button" id="btn-colors" class="min-h-[40px] min-w-[40px] p-2 rounded-lg hover:bg-slate-800 text-emerald-400 hover:text-emerald-300 transition-colors relative flex items-center justify-center active:scale-95" title="Couleur du texte">
+                <i data-lucide="palette" class="w-5 h-5"></i>
+                <span id="selected-color-dot" class="absolute bottom-1 right-1 w-2.5 h-2.5 rounded-full border border-slate-900 bg-white"></span>
+              </button>
+            </div>
+
+            <div class="flex-1 min-w-0 relative">
+              <input type="text" id="chat-input" placeholder="Message dans #Général (ou lien YouTube)..." class="w-full bg-slate-950 text-base sm:text-sm px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl border border-slate-800 text-slate-100 focus:outline-none transition-all placeholder:text-slate-500 font-medium" />
+              <span id="yt-detected-tag" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] text-red-400 font-semibold bg-red-950/80 px-1.5 py-0.5 rounded border border-red-800/60 flex items-center gap-1">
+                <i data-lucide="youtube" class="w-3 h-3"></i> <span class="hidden sm:inline">Vidéo</span>
+              </span>
+            </div>
+
+            <button type="submit" id="btn-send-message" class="min-h-[40px] min-w-[40px] p-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 text-slate-950 font-bold transition-all shadow-md hover:scale-105 active:scale-95 flex items-center justify-center flex-shrink-0" title="Envoyer (Entrée)">
+              <i data-lucide="send" class="w-4 h-4"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Mobile Backdrop for Users Sidebar -->
+      <div id="users-backdrop" class="hidden fixed inset-0 z-30 bg-black/60 backdrop-blur-sm md:hidden" onclick="toggleUsersSidebar(false)"></div>
+
+      <!-- Users Sidebar -->
+      <div id="users-sidebar" class="w-[85vw] max-w-sm sm:w-80 md:w-80 flex-shrink-0 h-full bg-slate-900/95 border-l border-slate-800 backdrop-blur-md flex flex-col z-40 md:z-20 md:static fixed right-0 top-0 md:top-auto bottom-0 transition-transform duration-300 translate-x-full md:translate-x-0 shadow-2xl md:shadow-none">
+        <!-- Sidebar Header -->
+        <div class="p-3.5 border-b border-slate-800 bg-slate-950/50">
+          <div class="flex items-center justify-between mb-2 gap-2">
+            <span class="text-xs font-bold tracking-wider uppercase text-slate-300 flex items-center gap-1.5 truncate">
+              <i data-lucide="users" class="w-4 h-4 text-emerald-400"></i> Membres en ligne
+            </span>
+            <div class="flex items-center gap-1.5 flex-shrink-0">
+              <span id="sidebar-room-users-count" class="text-xs font-extrabold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">4 connectés</span>
+              <button onclick="toggleUsersSidebar(false)" class="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 text-xs font-bold active:scale-95 md:hidden" title="Réduire la liste des membres">
+                ✕ Réduire
+              </button>
+            </div>
+          </div>
+          <!-- Gender Color Code Reminder -->
+          <div class="flex items-center justify-between text-[10px] text-slate-400 pt-1 pb-2 border-b border-slate-800/60">
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-pink-500"></span>Rose : F</span>
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-blue-500"></span>Bleu : H</span>
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-purple-500"></span>Mauve : Ado</span>
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-400"></span>Gris : N</span>
+          </div>
+          <!-- Search -->
+          <input type="text" id="user-search-input" placeholder="Rechercher un pseudo, ville..." class="w-full mt-2 bg-slate-950 text-xs text-slate-200 px-3 py-1.5 rounded-lg border border-slate-800 focus:outline-none" />
+        </div>
+
+        <p class="text-[10px] text-slate-400 px-3 pt-2 pb-1 italic">💡 Double-cliquez sur un pseudo pour ouvrir un PV instantané</p>
+        <div id="users-list-container" class="flex-1 overflow-y-auto p-2 space-y-1.5"></div>
+        <div class="p-2 border-t border-slate-800 md:hidden bg-slate-950">
+          <button onclick="toggleUsersSidebar(false)" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold rounded-xl border border-slate-700 flex items-center justify-center gap-1.5">
+            ✕ Fermer la liste des pseudos
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Draggable & Detachable YouTube PiP Player -->
+    <div id="floating-yt-player" class="hidden fixed z-50 w-[360px] md:w-[420px] rounded-2xl overflow-hidden border border-emerald-500/40 bg-slate-900/95 backdrop-blur-xl text-slate-100 shadow-2xl" style="left: 40px; top: 120px;">
+      <div id="yt-header" class="cursor-move bg-slate-900 px-3.5 py-2.5 flex items-center justify-between border-b border-slate-700/60 select-none">
+        <div class="flex items-center gap-2 truncate pr-2">
+          <i data-lucide="tv" class="w-4 h-4 text-red-400"></i>
+          <span id="yt-header-title" class="text-xs font-semibold truncate text-slate-200">Lecteur Détachable</span>
+        </div>
+        <div class="flex items-center gap-1 flex-shrink-0">
+          <button id="yt-btn-minimize" class="p-1 text-slate-400 hover:text-white rounded" title="Réduire"><i data-lucide="minus" class="w-3.5 h-3.5"></i></button>
+          <button id="yt-btn-expand" class="p-1 text-slate-400 hover:text-white rounded" title="Agrandir"><i data-lucide="square" class="w-3.5 h-3.5"></i></button>
+          <button id="yt-btn-close" class="p-1 text-slate-400 hover:text-red-400 rounded" title="Fermer"><i data-lucide="x" class="w-4 h-4"></i></button>
+        </div>
+      </div>
+      <div id="yt-body">
+        <div class="relative aspect-video bg-black">
+          <iframe id="yt-iframe" src="" class="w-full h-full border-0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="px-3.5 py-2 bg-slate-950 flex items-center justify-between text-xs">
+          <div class="truncate">
+            <span id="yt-info-channel" class="font-medium text-emerald-400 block truncate">Chaîne YouTube</span>
+            <span id="yt-info-views" class="text-slate-400 text-[11px]">1.2M vues</span>
+          </div>
+          <a id="yt-external-link" href="#" target="_blank" class="text-[11px] text-slate-400 hover:text-white bg-slate-800 px-2 py-1 rounded">YouTube ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Private Chat (PV) Dock (bottom right) -->
+    <div id="pv-dock" class="fixed bottom-0 right-4 z-40 flex items-end gap-2 max-w-full"></div>
+
+  </div> <!-- /App Wrapper -->
+
+  <!-- MODALS -->
+
+  <!-- 1. Salons Modal -->
+  <div id="modal-rooms" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+    <div class="bg-slate-900 border border-emerald-500/30 rounded-2xl w-full max-w-xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
+      <div class="px-5 py-4 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
+        <h3 class="font-bold text-white text-base flex items-center gap-2">
+          <i data-lucide="hash" class="w-5 h-5 text-emerald-400"></i> Salons de discussion Algerie.cool
+        </h3>
+        <button onclick="toggleModal('modal-rooms', false)" class="text-slate-400 hover:text-white">✕</button>
+      </div>
+      <div id="rooms-list-modal" class="p-4 space-y-2.5 overflow-y-auto flex-1"></div>
+    </div>
+  </div>
+
+  <!-- 2. Webradios Modal -->
+  <div id="modal-radios" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+    <div class="bg-slate-900 border border-emerald-500/30 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
+      <div class="px-5 py-4 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
+        <div>
+          <h3 class="font-bold text-white text-base flex items-center gap-2">
+            <i data-lucide="radio" class="w-5 h-5 text-emerald-400"></i> Webradios Live Algérie & Diaspora
+            <span class="text-[10px] bg-red-600 text-white font-bold px-1.5 py-0.5 rounded">DIRECT</span>
+          </h3>
+          <p class="text-xs text-slate-400">La radio écoutée s'affiche en temps réel sur votre profil !</p>
+        </div>
+        <button onclick="toggleModal('modal-radios', false)" class="text-slate-400 hover:text-white">✕</button>
+      </div>
+
+      <!-- Player Bar inside modal -->
+      <div id="radio-playing-bar" class="px-5 py-3.5 bg-slate-950/80 border-b border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-3 truncate">
+          <div id="radio-modal-logo" class="w-11 h-11 rounded-lg bg-emerald-500/20 text-2xl flex items-center justify-center">⚡</div>
+          <div class="truncate">
+            <span id="radio-modal-name" class="font-bold text-slate-100 text-sm block">Skyrock Alger</span>
+            <span id="radio-modal-tagline" class="text-xs text-emerald-400 block truncate">100% Rap Français & Raï DZ en direct pour Alger</span>
+          </div>
+        </div>
+        <button id="btn-toggle-play-modal" class="w-10 h-10 rounded-full bg-emerald-500 text-slate-950 flex items-center justify-center font-bold shadow-lg">
+          <i data-lucide="pause" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div id="radios-stations-list" class="p-4 space-y-2 overflow-y-auto flex-1"></div>
+
+      <!-- Volume bar -->
+      <div class="p-4 bg-slate-950 border-t border-slate-800 flex items-center gap-3 text-xs text-slate-400">
+        <i data-lucide="volume-2" class="w-4 h-4 text-emerald-400"></i>
+        <input type="range" id="radio-volume-slider" min="0" max="1" step="0.05" value="0.85" class="w-full accent-emerald-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer" />
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Themes & Wallpapers Modal -->
+  <div id="modal-themes" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+    <div class="bg-slate-900 border border-emerald-500/30 rounded-2xl w-full max-w-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+      <div class="px-5 py-4 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
+        <div>
+          <h3 class="font-bold text-white text-base flex items-center gap-2">
+            <i data-lucide="image" class="w-5 h-5 text-emerald-400"></i> Fonds & Thèmes (Mode IA Adaptatif)
+          </h3>
+          <p class="text-xs text-slate-400">Boutons, textes et décors s'adaptent automatiquement à chaque thème</p>
+        </div>
+        <button onclick="toggleModal('modal-themes', false)" class="text-slate-400 hover:text-white">✕</button>
+      </div>
+
+      <div class="p-5 space-y-5 overflow-y-auto flex-1 text-xs">
+        <!-- Quick Zap -->
+        <div class="p-3 bg-slate-950 rounded-xl border border-slate-800 flex items-center justify-between">
+          <span class="text-xs font-semibold text-slate-300">Zapping express de fonds d'écran :</span>
+          <button onclick="zapWallpaper()" class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-emerald-600 to-emerald-500 text-slate-950 font-bold hover:scale-105 transition-all">
+            Zapper maintenant ⚡
+          </button>
+        </div>
+
+        <!-- Light Mode Wallpapers -->
+        <div>
+          <h4 class="font-bold text-amber-300 mb-2 uppercase tracking-wider flex items-center gap-1.5">
+            <i data-lucide="sun" class="w-4 h-4 text-amber-400"></i> Thèmes Mode Clair (Plage / Sahara / Alger)
+          </h4>
+          <div id="light-wallpapers-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
+        </div>
+
+        <!-- Night Mode Wallpapers -->
+        <div>
+          <h4 class="font-bold text-indigo-300 mb-2 uppercase tracking-wider flex items-center gap-1.5">
+            <i data-lucide="moon" class="w-4 h-4 text-indigo-400"></i> Thèmes Mode Nocturne (Tour Eiffel / Galaxie Lune / Alger la Nuit)
+          </h4>
+          <div id="dark-wallpapers-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
+        </div>
+
+        <!-- Anti-Sabotage Sliders -->
+        <div class="p-4 bg-slate-950 rounded-xl border border-emerald-500/20 space-y-3">
+          <div class="font-bold text-emerald-400 flex items-center gap-2">
+            <i data-lucide="sliders" class="w-4 h-4"></i>
+            Protection de la lisibilité & contraste
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <div class="flex justify-between text-[11px] text-slate-300 mb-1">
+                <span>Voile de contraste :</span>
+                <span id="label-opacity" class="text-emerald-400 font-bold">65%</span>
+              </div>
+              <input type="range" id="slider-opacity" min="0.30" max="0.95" step="0.05" value="0.65" class="w-full accent-emerald-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer" />
+            </div>
+            <div>
+              <div class="flex justify-between text-[11px] text-slate-300 mb-1">
+                <span>Flou Bokeh arrière-plan :</span>
+                <span id="label-blur" class="text-emerald-400 font-bold">2px</span>
+              </div>
+              <input type="range" id="slider-blur" min="0" max="10" step="1" value="2" class="w-full accent-emerald-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Profile / Auth Modal -->
+  <div id="modal-auth" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+    <div class="bg-slate-900 border border-emerald-500/30 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl flex flex-col">
+      <div class="px-5 py-4 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
+        <h3 class="font-bold text-white text-base">Mon Profil & Pseudo</h3>
+        <button onclick="toggleModal('modal-auth', false)" class="text-slate-400 hover:text-white">✕</button>
+      </div>
+      <form id="auth-form" class="p-5 space-y-4 text-xs">
+        <div>
+          <label class="block font-bold text-slate-400 mb-1">Pseudo</label>
+          <input type="text" id="auth-input-pseudo" required class="w-full bg-slate-950 px-3 py-2 rounded-xl border border-slate-800 text-white font-bold" />
+        </div>
+        <div>
+          <label class="block font-bold text-slate-400 mb-1">Genre & Couleur de Pseudo</label>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" onclick="selectGender('femme')" class="p-2 rounded-xl border border-pink-500/40 bg-pink-500/10 text-pink-300 font-bold text-left">🌸 Femme (Rose)</button>
+            <button type="button" onclick="selectGender('homme')" class="p-2 rounded-xl border border-blue-500/40 bg-blue-500/10 text-blue-300 font-bold text-left">🔷 Homme (Bleu)</button>
+            <button type="button" onclick="selectGender('ado')" class="p-2 rounded-xl border border-purple-500/40 bg-purple-500/10 text-purple-300 font-bold text-left">🟣 Ado (Mauve)</button>
+            <button type="button" onclick="selectGender('neutre')" class="p-2 rounded-xl border border-slate-500/40 bg-slate-500/10 text-slate-300 font-bold text-left">⚪ Neutre (Gris)</button>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-bold text-slate-400 mb-1">Âge</label>
+            <input type="number" id="auth-input-age" value="24" min="13" max="99" class="w-full bg-slate-950 px-3 py-2 rounded-xl border border-slate-800 text-white" />
+          </div>
+          <div>
+            <label class="block font-bold text-slate-400 mb-1">Appareil</label>
+            <select id="auth-input-machine" class="w-full bg-slate-950 px-3 py-2 rounded-xl border border-slate-800 text-white">
+              <option value="pc">💻 PC</option>
+              <option value="smartphone">📱 Smartphone</option>
+              <option value="tablette">📱 Tablette</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block font-bold text-slate-400 mb-1">Ville / Géolocalisation</label>
+          <select id="auth-input-location" class="w-full bg-slate-950 px-3 py-2 rounded-xl border border-slate-800 text-white">
+            <option value="🇩🇿 Alger (El Bahdja)">🇩🇿 Alger (El Bahdja)</option>
+            <option value="🇩🇿 Oran (El Bahia)">🇩🇿 Oran (El Bahia)</option>
+            <option value="🇩🇿 Constantine (Cirta)">🇩🇿 Constantine (Cirta)</option>
+            <option value="🇩🇿 Tizi Ouzou">🇩🇿 Tizi Ouzou</option>
+            <option value="🇩🇿 Bejaia (Bgayet)">🇩🇿 Bejaia (Bgayet)</option>
+            <option value="🇫🇷 Paris & IDF">🇫🇷 Paris & IDF</option>
+            <option value="🇫🇷 Marseille & PACA">🇫🇷 Marseille & PACA</option>
+            <option value="🇫🇷 Lyon & Rhône-Alpes">🇫🇷 Lyon & Rhône-Alpes</option>
+          </select>
+        </div>
+        <button type="submit" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 text-slate-950 font-extrabold hover:scale-105 transition-all">
+          Enregistrer & Célébrer ✨
+        </button>
+  <!-- 5. Simplified Foreground Access Dialog -->
+  <div id="modal-access" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/85 backdrop-blur-md">
+    <div class="bg-slate-900 border-2 border-emerald-500/40 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl flex flex-col my-auto max-h-[92vh]">
+      <div class="px-5 py-4 bg-gradient-to-r from-emerald-950 via-slate-900 to-slate-900 border-b border-emerald-500/30 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-slate-800 border border-emerald-500/40 p-1 flex items-center justify-center shadow">
+            <svg class="w-full h-full rounded" viewBox="0 0 32 32" fill="none"><rect width="16" height="32" fill="#006233"/><rect x="16" width="16" height="32" fill="#ffffff"/><path d="M18 10a7 7 0 1 0 0 12 6 6 0 1 1 0-12z" fill="#d21034"/><polygon points="18,13.5 19.3,15.2 21.5,14.8 20.2,16.5 21.5,18.2 19.3,17.8 18,19.5 18.2,17.3 16.5,16.5 18.2,15.7" fill="#d21034"/></svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-extrabold text-white text-base">Algerie<span class="text-emerald-400">.cool</span></h3>
+              <span class="text-[10px] bg-red-600 text-white font-black px-1.5 py-0.2 rounded uppercase">DZ LIVE</span>
+            </div>
+            <p class="text-xs text-slate-300">Boîte d'accès simplifiée & Enregistrement</p>
+          </div>
+        </div>
+        <button onclick="closeAccessModal()" class="p-1.5 text-slate-400 hover:text-white rounded-lg">✕</button>
+      </div>
+
+      <div class="bg-slate-950/70 border-b border-slate-800 px-5 py-2 flex items-center justify-between text-[11px]">
+        <div class="text-slate-300 truncate">
+          🌐 IP Détectée : <span id="detected-ip-badge" class="text-emerald-400 font-mono font-bold">105.101.48.214</span> • <span class="text-slate-300">Alger, Algérie</span>
+        </div>
+        <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-bold">✓ Sécurisé</span>
+      </div>
+
+      <form id="access-form" class="p-5 space-y-4 text-xs overflow-y-auto">
+        <div>
+          <label class="block font-bold uppercase text-slate-300 mb-1">1. Votre Pseudo</label>
+          <input type="text" id="access-pseudo" required value="" placeholder="Ex: Fennec_Oran, Yasmine_DZ..." class="w-full bg-slate-950 px-3.5 py-2.5 rounded-xl border border-slate-700 text-slate-100 font-bold focus:border-emerald-500 focus:outline-none" />
+        </div>
+
+        <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 space-y-2">
+          <label class="flex items-center justify-between cursor-pointer">
+            <span class="font-bold text-slate-200 text-xs">🔒 Protéger ce pseudo par mot de passe ?</span>
+            <input type="checkbox" id="access-protect-checkbox" onchange="toggleAccessPassword(this.checked)" class="w-4 h-4 accent-emerald-500 rounded cursor-pointer" />
+          </label>
+          <div id="access-password-box" class="hidden pt-1">
+            <input type="password" id="access-password" placeholder="Mot de passe de réservation..." class="w-full bg-slate-900 px-3 py-2 rounded-lg border border-emerald-500/40 text-slate-100 focus:outline-none" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold uppercase text-slate-300 mb-1">2. Genre & Couleur</label>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" onclick="selectAccessGender('femme')" id="btn-g-femme" class="p-2.5 rounded-xl border border-pink-500/40 bg-pink-500/10 text-pink-300 font-bold text-left">🌸 Femme (Rose)</button>
+            <button type="button" onclick="selectAccessGender('homme')" id="btn-g-homme" class="p-2.5 rounded-xl border border-blue-500/40 bg-blue-500/20 text-blue-300 font-bold text-left ring-2 ring-emerald-500">🔷 Homme (Bleu)</button>
+            <button type="button" onclick="selectAccessGender('ado')" id="btn-g-ado" class="p-2.5 rounded-xl border border-purple-500/40 bg-purple-500/10 text-purple-300 font-bold text-left">🟣 Ado (Mauve)</button>
+            <button type="button" onclick="selectAccessGender('neutre')" id="btn-g-neutre" class="p-2.5 rounded-xl border border-slate-500/40 bg-slate-500/10 text-slate-300 font-bold text-left">⚪ Neutre (Gris)</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-bold uppercase text-slate-300 mb-1">3. Âge</label>
+            <input type="number" id="access-age" value="24" min="13" max="99" class="w-full bg-slate-950 px-3 py-2 rounded-xl border border-slate-700 text-slate-100 font-bold focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-bold uppercase text-slate-300 mb-1">4. Ville</label>
+            <select id="access-location" class="w-full bg-slate-950 px-3 py-2 rounded-xl border border-slate-700 text-slate-200 font-semibold focus:outline-none">
+              <option value="🇩🇿 Alger (El Bahdja)">🇩🇿 Alger (El Bahdja)</option>
+              <option value="🇩🇿 Oran (El Bahia)">🇩🇿 Oran (El Bahia)</option>
+              <option value="🇩🇿 Constantine (Cirta)">🇩🇿 Constantine (Cirta)</option>
+              <option value="🇩🇿 Tizi Ouzou">🇩🇿 Tizi Ouzou</option>
+              <option value="🇩🇿 Bejaia (Bgayet)">🇩🇿 Bejaia (Bgayet)</option>
+              <option value="🇫🇷 Paris & IDF">🇫🇷 Paris & IDF</option>
+              <option value="🇫🇷 Marseille & PACA">🇫🇷 Marseille & PACA</option>
+              <option value="🇫🇷 Lyon & Rhône-Alpes">🇫🇷 Lyon & Rhône-Alpes</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 hover:from-emerald-500 text-slate-950 font-black text-sm shadow-xl transition-all">
+          Rejoindre le Tchat Algerie.cool 🇩🇿
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // --- Initial State & Config ---
+    const DZ_ROOMS = [
+      { id: 'general', name: '#Général', topic: '🇩🇿 Bienvenue sur Algerie.cool ! Le carrefour de la jeunesse et de la diaspora algérienne. Respect, convivialité & fierté ⵣ 🇩🇿 🇫🇷', count: 4 },
+      { id: 'diaspora-france', name: '#Diaspora-France', topic: '🇫🇷 Espace Diaspora en France : actualités, rencontres, études, visas et entraide !', count: 2 },
+      { id: 'alger-centre', name: '#Alger-Centre', topic: '🇩🇿 Didouche Mourad, Bab El Oued, Hydra... L\'ambiance de la capitale en direct.', count: 2 },
+      { id: 'rai-chaabi', name: '#Rai-Chaabi', topic: '🎵 Cheb Hasni, Khaled, Dahmane El Harrachi, Soolking... Partagez vos liens YouTube !', count: 3 },
+      { id: 'rencontres', name: '#Rencontres-DZ', topic: '🌹 Rencontres & Amitiés DZ : Présentez-vous gentiment, double-cliquez pour ouvrir un PV !', count: 2 },
+      { id: 'oran-wahran', name: '#Oran-Wahran', topic: '☀️ Marhaba f\'Wahran : ambiance festive, blagues et convivialité oranaise.', count: 1 },
+      { id: 'kabylie-soummam', name: '#Kabylie-Soummam', topic: 'ⵣ Espace Kabylie : culture, musique, paysages et traditions.', count: 1 },
+      { id: 'tech-gaming', name: '#Tech-Gaming', topic: '💻 Code, IA, startups DZ, hardware et jeux en ligne.', count: 1 },
+      { id: 'sport-dz', name: '#Sport-DZ', topic: '⚽ One, Two, Three, Viva l\'Algérie ! Débats football et Fennecs 🇩🇿', count: 2 }
+    ];
+
+    const WEBRADIOS = [
+      { id: 'skyrock-alger', name: 'Skyrock Alger', tagline: '100% Rap Français & Raï DZ en direct pour Alger', url: 'https://icecast.skyrock.net/s/alger_aac_96k', logo: '⚡' },
+      { id: 'beur-fm', name: 'Beur FM', tagline: 'La radio de la diaspora maghrébine en France', url: 'https://beurfm.ice.infomaniak.ch/beurfm-high.mp3', logo: '📡' },
+      { id: 'france-maghreb-2', name: 'France Maghreb 2', tagline: 'La voix du Maghreb et de la diversité en France', url: 'https://francemaghreb2.ice.infomaniak.ch/francemaghreb2-high.mp3', logo: '📻' },
+      { id: 'generations-2000', name: 'Générations 2000', tagline: 'Les meilleurs hits Hip-Hop & R&B des années 2000', url: 'https://generations-2000.ice.infomaniak.ch/generations-2000.mp3', logo: '💿' },
+      { id: 'generations-2010', name: 'Générations 2010', tagline: 'Les classiques Hip-Hop, Rap & Trap des années 2010', url: 'https://generations-2010.ice.infomaniak.ch/generations-2010.mp3', logo: '🔥' },
+      { id: 'funk-jazz', name: 'Funk Jazz', tagline: '100% Grooves, Soul, Funk & Jazz Fusion', url: 'https://generationsjazzfunk.ice.infomaniak.ch/generations-jazz-funk.mp3', logo: '🎷' },
+      { id: 'reggaeton', name: 'Reggaeton', tagline: 'Les plus gros hits Reggaeton, Latin & Dancehall', url: 'https://generations-rgton.ice.infomaniak.ch/generations-rgton.mp3', logo: '💃' },
+      { id: 'rap', name: 'Rap Français', tagline: 'Le rap français non-stop, nouveautés & classiques', url: 'https://generationfm-rap.ice.infomaniak.ch/generationfm-rap-high.mp3', logo: '🎤' },
+      { id: 'underground', name: 'Underground', tagline: 'Hip-Hop indé, pépites underground & freestyles', url: 'https://generationfm-underground.ice.infomaniak.ch/generationfm-underground-high.mp3', logo: '🎛️' },
+      { id: 'caraibes', name: 'Caraïbes', tagline: 'Zouk, Dancehall, Kompa, Soca & ambiance tropicale', url: 'https://generations-caraibes.ice.infomaniak.ch/generations-caraibes-high.mp3', logo: '🌴' },
+      { id: 'hits', name: 'Rap Hits', tagline: 'Les numéros 1 des charts urbains actuels', url: 'https://generationraphits.ice.infomaniak.ch/generationraphits-128.mp3', logo: '🏆' },
+      { id: 'orient', name: 'Orient', tagline: 'Musique orientale, Raï, Tarab et sonorités du Maghreb', url: 'https://stream.rcs.revma.com/7hnrkawf4p8uv.mp3', logo: '🪕' }
+    ];
+
+    const WALLPAPERS = {
+      light: [
+        { id: 'alger_monument', name: 'Alger - Monument & Drapeau', icon: '🇩🇿', url: 'https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1920&auto=format&fit=crop', color: '#10b981', palette: 'Émeraude DZ' },
+        { id: 'plage', name: 'Plage Turquoise Méditerranée', icon: '🌊', url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1920&auto=format&fit=crop', color: '#06b6d4', palette: 'Cyan Méditerranée' },
+        { id: 'sahara', name: 'Sahara - Dunes de Taghit', icon: '🏜️', url: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&w=1920&auto=format&fit=crop', color: '#f59e0b', palette: 'Ambre Saharien' }
+      ],
+      dark: [
+        { id: 'tour_eiffel', name: 'Paris - Tour Eiffel Lumineuse', icon: '🗼', url: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1920&auto=format&fit=crop', color: '#fbbf24', palette: 'Or Parisien' },
+        { id: 'pleine_lune', name: 'Pleine Lune, Galaxie & Étoiles', icon: '🌌', url: 'https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=1920&auto=format&fit=crop', color: '#c084fc', palette: 'Nébuleuse Cosmique' },
+        { id: 'alger_nuit', name: 'Alger la Blanche la Nuit', icon: '🌙', url: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=1920&auto=format&fit=crop', color: '#10b981', palette: 'Émeraude Nocturne' }
+      ]
+    };
+
+    const SMILEYS = ['😀','😂','😍','😎','🔥','❤️','🇩🇿','🇫🇷','ⵣ','☕','🫖','⚽','🏆','💃','🕺','🎉','👏','💎','🌙','⭐','🧿','✨','🌹','💯'];
+    const CHAT_COLORS = ['#f8fafc', '#10b981', '#ef4444', '#3b82f6', '#f59e0b', '#ec4899', '#a855f7', '#06b6d4'];
+
+    // State
+    let currentUser = {
+      id: 'user_' + Math.floor(Math.random() * 899 + 100),
+      pseudo: 'Visiteur_DZ' + Math.floor(Math.random() * 899 + 100),
+      gender: 'homme', // Rose: femme / Bleu: homme / Mauve: ado / Gris: neutre
+      age: 24,
+      location: '🇩🇿 Alger (El Bahdja)',
+      countryCode: 'DZ',
+      machine: /Android|iPhone|iPad/i.test(navigator.userAgent) ? 'smartphone' : 'pc',
+      role: 'admin',
+      isRegistered: false,
+      currentRadio: 'Skyrock Alger'
+    };
+
+    let users = [
+      { id: 'bot_rosalyne', pseudo: 'rosalyne', gender: 'femme', age: 23, location: '🇩🇿 Alger (Bab El Oued)', machine: 'smartphone', role: 'modo', currentRadio: 'France Maghreb 2', isBot: true },
+      { id: 'bot_amine', pseudo: 'amine_dz', gender: 'homme', age: 28, location: '🇩🇿 Oran (Akid Lotfi)', machine: 'pc', role: 'user', currentRadio: 'Orient', isBot: true },
+      { id: 'bot_lynda', pseudo: 'lynda_paris', gender: 'femme', age: 26, location: '🇫🇷 Paris (11e)', machine: 'smartphone', role: 'op', currentRadio: 'Beur FM', isBot: true },
+      currentUser
+    ];
+
+    let activeRoomId = 'general';
+    let isDarkTheme = true;
+    let currentLightWp = 0;
+    let currentDarkWp = 0;
+    let soundEnabled = true;
+    let selectedColor = '#f8fafc';
+    let blockedUsers = [];
+    let privateConvs = {}; // partnerId -> { partner, messages: [] }
+
+    // Audio Elements & Synthesizer
+    const radioAudio = new Audio();
+    radioAudio.src = WEBRADIOS[0].url;
+    let isRadioPlaying = false;
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
+    }
+
+    function playJoinBip() {
+      if (!soundEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.frequency.setValueAtTime(587.33, now);
+        osc.frequency.setValueAtTime(880.00, now + 0.08);
+        gain.gain.setValueAtTime(0.01, now);
+        gain.gain.exponentialRampToValueAtTime(0.15, now + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.25);
+      } catch (e) {}
+    }
+
+    function playMsgSound() {
+      if (!soundEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(440, now);
+        osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.06);
+        gain.gain.setValueAtTime(0.08, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.13);
+      } catch (e) {}
+    }
+
+    // Messages storage
+    let messages = [
+      { id: '1', roomId: 'general', sender: users[0], content: 'Salam alaykoum et marhaba bikoum sur Algerie.cool ! 🌸 Heureuse de vous accueillir dans le salon principal !', color: '#f472b6', time: '12:00' },
+      { id: '2', roomId: 'general', sender: users[2], content: 'Coucou tout le monde depuis Paris ! N\'hésitez pas à brancher les webradios, le son est top 📻✨', color: '#22d3ee', time: '12:05' },
+      { id: '3', roomId: 'general', sender: users[1], content: 'Salam alaykoum ! Double-cliquez sur n\'importe quel pseudo pour démarrer un PV en tête-à-tête. Tahia El Djazair 🇩🇿 ⚽', color: '#10b981', time: '12:10' }
+    ];
+
+    // Helper for Gender Color
+    function getGenderClass(gender) {
+      if (gender === 'femme') return 'text-pink-400 font-bold';
+      if (gender === 'homme') return 'text-blue-400 font-bold';
+      if (gender === 'ado') return 'text-purple-400 font-bold';
+      return 'text-slate-300 font-bold';
+    }
+
+    // --- Render Functions ---
+    function renderMessages() {
+      const list = document.getElementById('messages-list');
+      list.innerHTML = '';
+      const roomMsgs = messages.filter(m => m.roomId === activeRoomId && !blockedUsers.includes(m.sender.id));
+
+      roomMsgs.forEach(m => {
+        const row = document.createElement('div');
+        row.className = 'group flex items-start gap-3 text-xs transition-all rounded-2xl p-2.5 bg-slate-900/80 hover:bg-slate-900/95 border border-slate-800/70 backdrop-blur-md shadow-sm';
+        
+        const isBot = m.sender.isBot ? '<span class="text-[9px] bg-slate-800 px-1 rounded text-slate-400 font-mono">bot</span>' : '';
+        const role = m.sender.role === 'admin' ? '👑' : m.sender.role === 'op' ? '🛡️' : m.sender.role === 'modo' ? '⭐' : '';
+        const flag = m.sender.countryCode === 'FR' ? '🇫🇷' : '🇩🇿';
+        const machine = m.sender.machine === 'pc' ? '💻' : '📱';
+
+        let ytHtml = '';
+        if (m.youtube) {
+          ytHtml = `
+            <div class="mt-2.5 max-w-md bg-slate-900 border border-emerald-500/40 rounded-xl overflow-hidden shadow-lg">
+              <div class="relative aspect-video bg-black cursor-pointer" onclick="openYouTube('${m.youtube.id}', '${m.youtube.title.replace(/'/g, "\\'")}', '${m.youtube.channel}')">
+                <img src="${m.youtube.thumb}" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                  <div class="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center text-xl shadow-xl">▶</div>
+                </div>
+              </div>
+              <div class="p-3 bg-slate-950 flex flex-col gap-1">
+                <h4 class="font-bold text-slate-100 text-xs">${m.youtube.title}</h4>
+                <div class="flex items-center justify-between text-[11px] text-slate-400">
+                  <span class="text-emerald-400 font-semibold">${m.youtube.channel}</span>
+                  <span>${m.youtube.views}</span>
+                </div>
+                <button onclick="openYouTube('${m.youtube.id}', '${m.youtube.title.replace(/'/g, "\\'")}', '${m.youtube.channel}')" class="mt-1 text-xs text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 px-3 py-1.5 rounded-lg border border-emerald-500/30 font-semibold text-center">
+                  Ouvrir en fenêtre détachable 🎥
+                </button>
+              </div>
+            </div>`;
+        }
+
+        row.innerHTML = `
+          <div class="w-9 h-9 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-sm flex-shrink-0 cursor-pointer" title="${m.sender.pseudo}">
+            ${flag}
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-1.5 flex-wrap leading-tight mb-1">
+              <span class="cursor-pointer hover:underline text-xs ${getGenderClass(m.sender.gender)}" ondblclick="openPV('${m.sender.id}')" title="Double-clic pour ouvrir un PV">${m.sender.pseudo}</span>
+              <span>${role}</span>
+              <span class="text-[10px] text-slate-400">${machine} ${m.sender.location || ''}</span>
+              ${m.sender.currentRadio ? `<span class="text-[10px] text-emerald-400">🎵 ${m.sender.currentRadio}</span>` : ''}
+              ${isBot}
+              <span class="text-[10px] text-slate-400 ml-auto">${m.time}</span>
+            </div>
+            <div style="color: ${m.color || '#f8fafc'}" class="text-slate-100 text-sm break-words whitespace-pre-wrap">${m.content}</div>
+            ${ytHtml}
+          </div>`;
+        list.appendChild(row);
+      });
+
+      const container = document.getElementById('chat-messages');
+      container.scrollTop = container.scrollHeight;
+    }
+
+    let adminDiagMode = false;
+    function toggleAdminDiag() {
+      adminDiagMode = !adminDiagMode;
+      renderUsers();
+    }
+
+    function renderUsers() {
+      const container = document.getElementById('users-list-container');
+      container.innerHTML = '';
+      const filter = document.getElementById('user-search-input').value.toLowerCase();
+
+      const matched = users.filter(u => u.pseudo.toLowerCase().includes(filter) || (u.location && u.location.toLowerCase().includes(filter)));
+
+      const admins = matched.filter(u => !u.isBot && (u.role === 'admin' || u.role === 'op' || u.role === 'modo'));
+      const regulars = matched.filter(u => !u.isBot && u.role === 'user');
+      const bots = matched.filter(u => u.isBot);
+
+      // Admin diag toggle bar for admin
+      if (currentUser.role === 'admin' || currentUser.role === 'op' || currentUser.role === 'modo') {
+        const diagToggle = document.createElement('div');
+        diagToggle.className = 'mb-2 p-1.5 bg-slate-950/80 rounded-lg border border-amber-500/30 flex items-center justify-between text-[10px]';
+        diagToggle.innerHTML = `
+          <span class="text-amber-300 font-bold">🛡️ Diagnostic Admin IP</span>
+          <button onclick="toggleAdminDiag()" class="px-2 py-0.5 rounded text-[10px] font-bold ${adminDiagMode ? 'bg-amber-500 text-slate-950' : 'bg-slate-800 text-slate-300'}">
+            ${adminDiagMode ? 'ON' : 'OFF'}
+          </button>
+        `;
+        container.appendChild(diagToggle);
+      }
+
+      function buildCard(u, isBotItem) {
+        const item = document.createElement('div');
+        item.className = 'group p-2.5 rounded-xl border border-slate-800/80 bg-slate-950/40 hover:bg-slate-800/60 cursor-pointer transition-all select-none mb-1.5';
+        item.ondblclick = () => openPV(u.id);
+
+        const isMe = u.id === currentUser.id ? '<span class="text-[9px] bg-emerald-500/20 text-emerald-400 px-1 rounded">(Moi)</span>' : '';
+        const machine = u.machine === 'pc' ? '💻' : '📱';
+        const role = u.role === 'admin' ? '<span class="text-[9px] bg-amber-500/20 text-amber-300 px-1 rounded border border-amber-500/40 font-bold">Admin</span>' : u.role === 'modo' ? '<span class="text-[9px] bg-cyan-500/20 text-cyan-300 px-1 rounded font-bold">Modo</span>' : u.role === 'op' ? '<span class="text-[9px] bg-emerald-500/20 text-emerald-300 px-1 rounded font-bold">OP</span>' : '';
+        const botBadge = isBotItem ? '<span class="text-[9px] bg-slate-800 text-cyan-300 px-1 rounded font-mono border border-cyan-500/30">🤖 bot</span>' : '';
+
+        let diagBox = '';
+        if (adminDiagMode && (currentUser.role === 'admin' || currentUser.role === 'op' || currentUser.role === 'modo')) {
+          diagBox = `
+            <div class="mt-1.5 pt-1.5 border-t border-amber-500/30 text-[9px] text-amber-200/90 bg-slate-900/90 p-1.5 rounded space-y-0.5">
+              <div class="flex justify-between font-mono"><span>IP: ${u.ip || '105.101.48.214'}</span><span>${u.isp || 'Algérie Télécom'}</span></div>
+              <div class="flex justify-between text-slate-400"><span>${u.machine === 'pc' ? 'PC Windows 11' : 'Smartphone Android 14'}</span><span class="text-emerald-400">28 ms</span></div>
+              ${u.id !== currentUser.id ? `
+                <div class="flex gap-1 pt-1" onclick="event.stopPropagation()">
+                  <button onclick="handleWarn('${u.pseudo}')" class="flex-1 bg-amber-500/20 text-amber-300 rounded py-0.5 font-bold">Warn</button>
+                  <button onclick="handleMute('${u.pseudo}')" class="flex-1 bg-purple-500/20 text-purple-300 rounded py-0.5 font-bold">Mute</button>
+                  <button onclick="handleKick('${u.pseudo}')" class="flex-1 bg-orange-500/20 text-orange-300 rounded py-0.5 font-bold">Kick</button>
+                  <button onclick="handleBan('${u.pseudo}')" class="flex-1 bg-red-500/20 text-red-300 rounded py-0.5 font-bold">Ban</button>
+                </div>
+              ` : ''}
+            </div>
+          `;
+        }
+
+        item.innerHTML = `
+          <div class="flex items-center justify-between mb-1">
+            <div class="flex items-center gap-1.5 truncate">
+              <span class="w-2 h-2 rounded-full ${isBotItem ? 'bg-cyan-400' : 'bg-emerald-400'}"></span>
+              <span class="${getGenderClass(u.gender)} text-xs font-bold truncate">${u.pseudo}</span>
+              ${isMe}
+              ${role}
+              ${botBadge}
+            </div>
+            <span class="text-xs">${machine}</span>
+          </div>
+          <div class="flex items-center justify-between text-[11px] text-slate-400">
+            <span>${u.location || 'Algérie'}</span>
+            <span>${u.age || 22} ans • ${(u.gender || 'homme').toUpperCase()}</span>
+          </div>
+          <div class="mt-1 pt-1 border-t border-slate-800/40 flex items-center justify-between text-[10px] text-emerald-400">
+            <span>🎵 ${u.currentRadio || 'Skyrock Alger'}</span>
+            <span class="text-slate-400">#Général</span>
+          </div>
+          ${diagBox}
+        `;
+        return item;
+      }
+
+      // 1. Admins
+      if (admins.length > 0) {
+        const title = document.createElement('div');
+        title.className = 'text-[10px] font-extrabold uppercase text-amber-400 mb-1 flex items-center gap-1';
+        title.innerHTML = '<span>👑 Administration & Modération</span>';
+        container.appendChild(title);
+        admins.forEach(u => container.appendChild(buildCard(u, false)));
+      }
+
+      // 2. Regular Members
+      const titleM = document.createElement('div');
+      titleM.className = 'text-[10px] font-extrabold uppercase text-emerald-400 my-1.5 flex items-center gap-1';
+      titleM.innerHTML = `<span>👥 Membres en ligne (${regulars.length})</span>`;
+      container.appendChild(titleM);
+      regulars.forEach(u => container.appendChild(buildCard(u, false)));
+
+      // 3. Bots at bottom
+      if (bots.length > 0) {
+        const titleB = document.createElement('div');
+        titleB.className = 'text-[10px] font-extrabold uppercase text-cyan-400 mt-2 mb-1 pt-1 border-t border-slate-800 flex items-center justify-between';
+        titleB.innerHTML = '<span>🤖 Bots Système & Salons</span><span class="text-[9px] text-slate-400 font-mono">en bas</span>';
+        container.appendChild(titleB);
+        bots.forEach(u => container.appendChild(buildCard(u, true)));
+      }
+
+      document.getElementById('nav-total-users').innerText = users.length;
+      document.getElementById('sidebar-room-users-count').innerText = `${users.length} connectés`;
+    }
+
+    function handleWarn(pseudo) {
+      alert(`⚠️ Avertissement officiel envoyé à ${pseudo}.`);
+    }
+    function handleMute(pseudo) {
+      alert(`🔇 ${pseudo} a été mis en sourdine.`);
+    }
+    function handleKick(pseudo) {
+      users = users.filter(u => u.pseudo !== pseudo);
+      renderUsers();
+      alert(`👞 ${pseudo} a été expulsé.`);
+    }
+    function handleBan(pseudo) {
+      users = users.filter(u => u.pseudo !== pseudo);
+      renderUsers();
+      alert(`⛔ ${pseudo} et son IP ont été bannis définitivement.`);
+    }
+
+    // --- Webradio Engine ---
+    function selectRadio(index) {
+      const radio = WEBRADIOS[index];
+      radioAudio.src = radio.url;
+      radioAudio.play().then(() => {
+        isRadioPlaying = true;
+        updateRadioUI();
+      }).catch(e => console.warn(e));
+
+      currentUser.currentRadio = radio.name;
+      renderUsers();
+    }
+
+    function toggleRadioPlay() {
+      if (isRadioPlaying) {
+        radioAudio.pause();
+        isRadioPlaying = false;
+      } else {
+        radioAudio.play().then(() => { isRadioPlaying = true; updateRadioUI(); }).catch(e => console.warn(e));
+      }
+      updateRadioUI();
+    }
+
+    function updateRadioUI() {
+      const currentSrc = radioAudio.src;
+      const found = WEBRADIOS.find(r => r.url === currentSrc) || WEBRADIOS[0];
+      document.getElementById('nav-radio-name').innerText = found.name;
+      document.getElementById('radio-modal-name').innerText = found.name;
+      document.getElementById('radio-modal-tagline').innerText = found.tagline;
+      document.getElementById('radio-modal-logo').innerText = found.logo;
+      document.getElementById('nav-eq').style.display = isRadioPlaying ? 'flex' : 'none';
+      document.getElementById('btn-toggle-play-modal').innerHTML = isRadioPlaying ? '<i data-lucide="pause" class="w-5 h-5"></i>' : '<i data-lucide="play" class="w-5 h-5"></i>';
+      lucide.createIcons();
+    }
+
+    // --- Adaptive Mode IA & Wallpapers ---
+    function applyWallpaper(wp) {
+      document.getElementById('wallpaper-bg').style.backgroundImage = `url('${wp.url}')`;
+      document.getElementById('brand-dot').style.color = wp.color;
+      document.getElementById('btn-zap-wallpaper').style.boxShadow = `0 0 20px ${wp.color}66`;
+      document.getElementById('topic-palette-tag').innerText = `• Palette IA : ${wp.palette}`;
+      document.getElementById('ai-color-dot').style.backgroundColor = wp.color;
+      document.getElementById('ai-color-name').innerText = wp.palette;
+      selectedColor = wp.color;
+      document.getElementById('selected-color-dot').style.backgroundColor = wp.color;
+    }
+
+    function zapWallpaper() {
+      const list = isDarkTheme ? WALLPAPERS.dark : WALLPAPERS.light;
+      if (isDarkTheme) {
+        currentDarkWp = (currentDarkWp + 1) % list.length;
+        applyWallpaper(list[currentDarkWp]);
+      } else {
+        currentLightWp = (currentLightWp + 1) % list.length;
+        applyWallpaper(list[currentLightWp]);
+      }
+      playMsgSound();
+    }
+
+    // --- Floating YouTube PiP ---
+    let ytMinimized = false;
+    function openYouTube(videoId, title, channel) {
+      const p = document.getElementById('floating-yt-player');
+      p.classList.remove('hidden');
+      document.getElementById('yt-iframe').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      document.getElementById('yt-header-title').innerText = title;
+      document.getElementById('yt-info-channel').innerText = channel || 'YouTube';
+      document.getElementById('yt-external-link').href = `https://www.youtube.com/watch?v=${videoId}`;
+      lucide.createIcons();
+    }
+
+    function extractYouTube(text) {
+      const m = text.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/i);
+      return m ? m[1] : null;
+    }
+
+    // Draggable PiP
+    const ytPlayer = document.getElementById('floating-yt-player');
+    const ytHeader = document.getElementById('yt-header');
+    let isDragging = false, startX, startY, posX = 40, posY = 120;
+    ytHeader.onmousedown = (e) => {
+      isDragging = true;
+      startX = e.clientX - posX;
+      startY = e.clientY - posY;
+    };
+    window.onmousemove = (e) => {
+      if (!isDragging) return;
+      posX = e.clientX - startX;
+      posY = e.clientY - startY;
+      ytPlayer.style.left = posX + 'px';
+      ytPlayer.style.top = posY + 'px';
+    };
+    window.onmouseup = () => { isDragging = false; };
+
+    document.getElementById('yt-btn-close').onclick = () => {
+      document.getElementById('yt-iframe').src = '';
+      ytPlayer.classList.add('hidden');
+    };
+    document.getElementById('yt-btn-minimize').onclick = () => {
+      ytMinimized = !ytMinimized;
+      document.getElementById('yt-body').style.display = ytMinimized ? 'none' : 'block';
+      ytPlayer.style.width = ytMinimized ? '260px' : '380px';
+    };
+
+    // --- Private Messages (PV) ---
+    function openPV(partnerId) {
+      const partner = users.find(u => u.id === partnerId);
+      if (!partner || partner.id === currentUser.id) return;
+      if (blockedUsers.includes(partner.id)) {
+        alert('Utilisateur bloqué.');
+        return;
+      }
+
+      if (!privateConvs[partner.id]) {
+        privateConvs[partner.id] = { partner, messages: [] };
+      }
+      renderPVDock(partner.id);
+      toggleUsersSidebar(false);
+    }
+
+    function renderPVDock(activePartnerId) {
+      const dock = document.getElementById('pv-dock');
+      dock.innerHTML = '';
+
+      Object.values(privateConvs).forEach(conv => {
+        const win = document.createElement('div');
+        win.className = 'w-80 bg-slate-900 border border-emerald-500/40 rounded-t-2xl shadow-2xl overflow-hidden flex flex-col h-[380px]';
+        const partner = conv.partner;
+
+        win.innerHTML = `
+          <div class="px-3.5 py-2.5 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
+            <div class="flex items-center gap-2 truncate">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span class="${getGenderClass(partner.gender)} text-xs font-bold truncate">${partner.pseudo}</span>
+              <span class="text-[10px] text-slate-400">${partner.location || ''}</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <button onclick="blockUser('${partner.id}')" class="text-slate-400 hover:text-red-400 p-1" title="Bloquer">🚫</button>
+              <button onclick="closePV('${partner.id}')" class="text-slate-400 hover:text-white p-1">✕</button>
+            </div>
+          </div>
+          <div id="pv-msgs-${partner.id}" class="flex-1 overflow-y-auto p-3 space-y-2 bg-slate-950/70 text-xs"></div>
+          <form onsubmit="sendPV(event, '${partner.id}')" class="p-2.5 bg-slate-900 border-t border-slate-800 flex items-center gap-2">
+            <input type="text" id="pv-input-${partner.id}" placeholder="Message privé..." class="flex-1 bg-slate-950 text-xs text-white px-3 py-1.5 rounded-xl border border-slate-800 focus:outline-none" />
+            <button type="submit" class="p-1.5 rounded-lg bg-emerald-500 text-slate-950 font-bold">➤</button>
+          </form>`;
+        dock.appendChild(win);
+
+        const msgsBox = win.querySelector(`#pv-msgs-${partner.id}`);
+        conv.messages.forEach(m => {
+          const isMe = m.senderId === currentUser.id;
+          const bubble = document.createElement('div');
+          bubble.className = `flex flex-col ${isMe ? 'items-end' : 'items-start'}`;
+          bubble.innerHTML = `
+            <div class="px-3 py-1.5 rounded-xl text-xs ${isMe ? 'bg-emerald-600 text-slate-950 font-medium' : 'bg-slate-800 text-slate-100 border border-slate-700'}">
+              ${m.text}
+            </div>
+            <span class="text-[9px] text-slate-500 mt-0.5">${m.time}</span>`;
+          msgsBox.appendChild(bubble);
+        });
+        msgsBox.scrollTop = msgsBox.scrollHeight;
+      });
+    }
+
+    function sendPV(e, partnerId) {
+      e.preventDefault();
+      const input = document.getElementById(`pv-input-${partnerId}`);
+      const text = input.value.trim();
+      if (!text) return;
+
+      const conv = privateConvs[partnerId];
+      if (!conv) return;
+
+      conv.messages.push({ senderId: currentUser.id, text, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) });
+      input.value = '';
+      renderPVDock(partnerId);
+      playMsgSound();
+
+      // Bot smart answer
+      if (conv.partner.isBot) {
+        setTimeout(() => {
+          let ans = `Salam ${currentUser.pseudo} ! Marhaba bikoum sur Algerie.cool 🌸`;
+          if (conv.partner.pseudo === 'rosalyne') ans = `Coucou ${currentUser.pseudo} 🌸 ! Comment se passe ta journée ? Profite bien du tchat !`;
+          if (conv.partner.pseudo === 'amine_dz') ans = `Salem frangin ! Wahran El Bahia en force 🇩🇿 Tu écoutes quoi comme radio ?`;
+          if (conv.partner.pseudo === 'lynda_paris') ans = `Hello ${currentUser.pseudo} ! Trop contente de te croiser en PV !`;
+
+          conv.messages.push({ senderId: conv.partner.id, text: ans, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) });
+          renderPVDock(partnerId);
+          playMsgSound();
+        }, 1200);
+      }
+    }
+
+    function closePV(partnerId) {
+      delete privateConvs[partnerId];
+      renderPVDock(null);
+    }
+
+    function blockUser(id) {
+      const u = users.find(x => x.id === id);
+      if (u && (u.role === 'admin' || u.role === 'op' || u.role === 'modo')) {
+        alert('Impossible de bloquer un membre de la modération.');
+        return;
+      }
+      blockedUsers.push(id);
+      closePV(id);
+      renderMessages();
+      alert('Utilisateur bloqué.');
+    }
+
+    // --- Message Send & IRC Command Executor ---
+    document.getElementById('chat-form').onsubmit = (e) => {
+      e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      // Command handling: /clear, /kick, /ban, /mute, /warn, /admin, /op, /modo, /topic, /help
+      if (text.startsWith('/')) {
+        const parts = text.split(' ');
+        const cmd = parts[0].toLowerCase();
+        const target = parts[1];
+        if (cmd === '/clear') {
+          messages = messages.filter(m => m.roomId !== activeRoomId);
+          renderMessages();
+          input.value = '';
+          return;
+        }
+        if (cmd === '/topic') {
+          const newTopic = parts.slice(1).join(' ');
+          const room = DZ_ROOMS.find(r => r.id === activeRoomId);
+          if (room && newTopic) {
+            room.topic = newTopic;
+            document.getElementById('topic-room-text').innerText = newTopic;
+          }
+          input.value = '';
+          return;
+        }
+        if (cmd === '/help') {
+          alert('Commandes : /ban <pseudo>, /kick <pseudo>, /mute <pseudo>, /warn <pseudo>, /clear, /admin <pseudo>, /op <pseudo>, /modo <pseudo>, /topic <texte>');
+          input.value = '';
+          return;
+        }
+        alert(`Commande exécutée : ${cmd} ${target || ''}`);
+        input.value = '';
+        return;
+      }
+
+      // YouTube Detection
+      const ytId = extractYouTube(text);
+      let ytData = null;
+      if (ytId) {
+        ytData = {
+          id: ytId,
+          title: 'Musique & Vidéo Algérienne Live',
+          channel: 'DZ Vibes Officiel',
+          views: '1.4M de vues',
+          thumb: `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`
+        };
+      }
+
+      messages.push({
+        id: 'msg_' + Date.now(),
+        roomId: activeRoomId,
+        sender: currentUser,
+        content: text,
+        color: selectedColor,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        youtube: ytData
+      });
+
+      input.value = '';
+      renderMessages();
+      playMsgSound();
+
+      if (ytData) {
+        openYouTube(ytData.id, ytData.title, ytData.channel);
+      }
+
+      // Rosalyne greetings trigger
+      if (text.toLowerCase().includes('salam') || text.toLowerCase().includes('bonjour') || text.toLowerCase().includes('rosalyne')) {
+        setTimeout(() => {
+          messages.push({
+            id: 'msg_' + Date.now(),
+            roomId: activeRoomId,
+            sender: users[0],
+            content: `Wa alaykoum salam @${currentUser.pseudo} ! 🌸 Marhaban bikoum sur Algerie.cool, installe-toi bien !`,
+            color: '#f472b6',
+            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          });
+          renderMessages();
+          playMsgSound();
+        }, 1300);
+      }
+    };
+
+    // YouTube Tag preview typing detector
+    document.getElementById('chat-input').oninput = (e) => {
+      const isYt = extractYouTube(e.target.value);
+      document.getElementById('yt-detected-tag').style.display = isYt ? 'flex' : 'none';
+    };
+
+    // Modal Helper
+    function toggleModal(id, show) {
+      document.getElementById(id).classList.toggle('hidden', !show);
+    }
+
+    function toggleSmileys(show) { document.getElementById('smileys-popup').classList.toggle('hidden', !show); }
+    function toggleColors(show) { document.getElementById('colors-popup').classList.toggle('hidden', !show); }
+
+    document.getElementById('btn-smileys').onclick = () => toggleSmileys(document.getElementById('smileys-popup').classList.contains('hidden'));
+    document.getElementById('btn-colors').onclick = () => toggleColors(document.getElementById('colors-popup').classList.contains('hidden'));
+    document.getElementById('btn-open-rooms').onclick = () => toggleModal('modal-rooms', true);
+    document.getElementById('btn-open-radios').onclick = () => toggleModal('modal-radios', true);
+    document.getElementById('btn-open-themes').onclick = () => toggleModal('modal-themes', true);
+    document.getElementById('btn-open-auth').onclick = () => toggleModal('modal-auth', true);
+    document.getElementById('btn-zap-wallpaper').onclick = zapWallpaper;
+    document.getElementById('btn-toggle-play-modal').onclick = toggleRadioPlay;
+    document.getElementById('radio-volume-slider').oninput = (e) => { radioAudio.volume = e.target.value; };
+
+    document.getElementById('btn-toggle-sound').onclick = () => {
+      soundEnabled = !soundEnabled;
+      document.getElementById('btn-toggle-sound').className = soundEnabled 
+        ? 'p-2 rounded-xl bg-slate-800 border border-slate-700 text-emerald-400' 
+        : 'p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-500';
+    };
+
+    document.getElementById('btn-toggle-dark').onclick = () => {
+      isDarkTheme = !isDarkTheme;
+      document.documentElement.classList.toggle('dark', isDarkTheme);
+      const list = isDarkTheme ? WALLPAPERS.dark : WALLPAPERS.light;
+      applyWallpaper(list[0]);
+    };
+
+    function toggleUsersSidebar(show) {
+      const s = document.getElementById('users-sidebar');
+      const b = document.getElementById('users-backdrop');
+      const shouldShow = typeof show === 'boolean' ? show : s.classList.contains('translate-x-full');
+      if (shouldShow) {
+        s.classList.remove('translate-x-full');
+        if (b) b.classList.remove('hidden');
+      } else {
+        s.classList.add('translate-x-full');
+        if (b) b.classList.add('hidden');
+      }
+    }
+
+    function insertQuickSmiley(s) {
+      const input = document.getElementById('chat-input');
+      input.value += s;
+      input.focus();
+    }
+
+    document.getElementById('btn-toggle-userlist').onclick = () => {
+      toggleUsersSidebar();
+    };
+
+    // Sliders for Opacity & Blur
+    document.getElementById('slider-opacity').oninput = (e) => {
+      const val = e.target.value;
+      document.getElementById('label-opacity').innerText = Math.round(val * 100) + '%';
+      document.getElementById('wallpaper-overlay').style.backgroundColor = `rgba(2, 6, 23, ${val})`;
+    };
+    document.getElementById('slider-blur').oninput = (e) => {
+      const val = e.target.value;
+      document.getElementById('label-blur').innerText = val + 'px';
+      document.getElementById('wallpaper-bg').style.filter = `blur(${val}px)`;
+    };
+
+    // Smileys Grid Build
+    const smileysGrid = document.getElementById('smileys-grid');
+    SMILEYS.forEach(s => {
+      const b = document.createElement('button');
+      b.className = 'w-8 h-8 rounded-lg hover:bg-slate-800 flex items-center justify-center';
+      b.innerText = s;
+      b.onclick = () => {
+        document.getElementById('chat-input').value += s;
+        toggleSmileys(false);
+      };
+      smileysGrid.appendChild(b);
+    });
+
+    // Colors Grid Build
+    const colorsGrid = document.getElementById('colors-grid');
+    CHAT_COLORS.forEach(c => {
+      const b = document.createElement('button');
+      b.className = 'p-1.5 rounded-lg border border-slate-800 flex flex-col items-center gap-1 hover:bg-slate-800';
+      b.innerHTML = `<span class="w-5 h-5 rounded-full border border-white/20" style="background-color: ${c}"></span>`;
+      b.onclick = () => {
+        selectedColor = c;
+        document.getElementById('selected-color-dot').style.backgroundColor = c;
+        toggleColors(false);
+      };
+      colorsGrid.appendChild(b);
+    });
+
+    document.getElementById('btn-sync-ai-color').onclick = () => {
+      const list = isDarkTheme ? WALLPAPERS.dark : WALLPAPERS.light;
+      const wp = isDarkTheme ? list[currentDarkWp] : list[currentLightWp];
+      selectedColor = wp.color;
+      document.getElementById('selected-color-dot').style.backgroundColor = wp.color;
+      toggleColors(false);
+    };
+
+    // Build Rooms Modal
+    const roomsContainer = document.getElementById('rooms-list-modal');
+    DZ_ROOMS.forEach(r => {
+      const b = document.createElement('div');
+      b.className = 'p-3 rounded-xl border border-slate-800 hover:border-emerald-500/50 bg-slate-800/40 cursor-pointer flex items-center justify-between';
+      b.onclick = () => {
+        activeRoomId = r.id;
+        document.getElementById('nav-active-room').innerText = r.name;
+        document.getElementById('topic-room-name').innerText = r.name;
+        document.getElementById('topic-room-text').innerText = r.topic;
+        toggleModal('modal-rooms', false);
+        renderMessages();
+      };
+      b.innerHTML = `
+        <div>
+          <h4 class="font-bold text-sm text-slate-100">${r.name}</h4>
+          <p class="text-xs text-slate-400">${r.topic}</p>
+        </div>
+        <span class="text-xs bg-slate-900 px-2.5 py-1 rounded-full text-emerald-400 font-bold">${r.count}</span>`;
+      roomsContainer.appendChild(b);
+    });
+
+    // Build Radios Modal
+    const radiosContainer = document.getElementById('radios-stations-list');
+    WEBRADIOS.forEach((r, idx) => {
+      const item = document.createElement('div');
+      item.className = 'p-3 rounded-xl border border-slate-800 hover:border-emerald-500/50 bg-slate-800/40 cursor-pointer flex items-center justify-between';
+      item.onclick = () => selectRadio(idx);
+      item.innerHTML = `
+        <div class="flex items-center gap-3">
+          <span class="text-2xl">${r.logo}</span>
+          <div>
+            <h4 class="font-bold text-sm text-slate-100">${r.name}</h4>
+            <p class="text-xs text-slate-400">${r.tagline}</p>
+          </div>
+        </div>
+        <button class="w-8 h-8 rounded-full bg-slate-700 hover:bg-emerald-500 text-white flex items-center justify-center font-bold">▶</button>`;
+      radiosContainer.appendChild(item);
+    });
+
+    // Build Theme Modal Cards
+    function buildThemeCards() {
+      const lGrid = document.getElementById('light-wallpapers-grid');
+      lGrid.innerHTML = '';
+      WALLPAPERS.light.forEach((wp, idx) => {
+        const card = document.createElement('div');
+        card.className = 'rounded-xl overflow-hidden border border-slate-800 cursor-pointer hover:border-emerald-500 transition-all';
+        card.onclick = () => { currentLightWp = idx; isDarkTheme = false; document.documentElement.classList.remove('dark'); applyWallpaper(wp); };
+        card.innerHTML = `
+          <img src="${wp.url}" class="aspect-[16/10] w-full object-cover" />
+          <div class="p-2 bg-slate-900">
+            <span class="font-bold text-xs">${wp.name}</span>
+            <div class="text-[9px] text-emerald-400 mt-1">✨ IA : ${wp.palette}</div>
+          </div>`;
+        lGrid.appendChild(card);
+      });
+
+      const dGrid = document.getElementById('dark-wallpapers-grid');
+      dGrid.innerHTML = '';
+      WALLPAPERS.dark.forEach((wp, idx) => {
+        const card = document.createElement('div');
+        card.className = 'rounded-xl overflow-hidden border border-slate-800 cursor-pointer hover:border-emerald-500 transition-all';
+        card.onclick = () => { currentDarkWp = idx; isDarkTheme = true; document.documentElement.classList.add('dark'); applyWallpaper(wp); };
+        card.innerHTML = `
+          <img src="${wp.url}" class="aspect-[16/10] w-full object-cover" />
+          <div class="p-2 bg-slate-900">
+            <span class="font-bold text-xs">${wp.name}</span>
+            <div class="text-[9px] text-emerald-400 mt-1">✨ IA : ${wp.palette}</div>
+          </div>`;
+        dGrid.appendChild(card);
+      });
+    }
+
+    // Gender selection
+    function selectGender(g) {
+      currentUser.gender = g;
+      renderUsers();
+      document.getElementById('user-pill-pseudo').className = `block font-bold truncate max-w-[90px] leading-tight ${getGenderClass(g)}`;
+    }
+
+    // Auth Form
+    document.getElementById('auth-form').onsubmit = (e) => {
+      e.preventDefault();
+      currentUser.pseudo = document.getElementById('auth-input-pseudo').value.trim();
+      currentUser.age = parseInt(document.getElementById('auth-input-age').value) || 24;
+      currentUser.machine = document.getElementById('auth-input-machine').value;
+      currentUser.location = document.getElementById('auth-input-location').value;
+      currentUser.isRegistered = true;
+
+      document.getElementById('user-pill-pseudo').innerText = currentUser.pseudo;
+      document.getElementById('user-pill-status').innerText = '✨ Enregistré';
+      toggleModal('modal-auth', false);
+
+      renderUsers();
+      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+      playJoinBip();
+    };
+
+    let selectedAccessGender = 'homme';
+    function selectAccessGender(g) {
+      selectedAccessGender = g;
+      ['femme', 'homme', 'ado', 'neutre'].forEach(k => {
+        const btn = document.getElementById('btn-g-' + k);
+        if (btn) {
+          if (k === g) {
+            btn.classList.add('ring-2', 'ring-emerald-500');
+          } else {
+            btn.classList.remove('ring-2', 'ring-emerald-500');
+          }
+        }
+      });
+    }
+
+    function toggleAccessPassword(checked) {
+      const box = document.getElementById('access-password-box');
+      if (box) {
+        if (checked) box.classList.remove('hidden');
+        else box.classList.add('hidden');
+      }
+    }
+
+    function closeAccessModal() {
+      const modal = document.getElementById('modal-access');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function openAccessModal() {
+      const modal = document.getElementById('modal-access');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    document.getElementById('access-form').onsubmit = (e) => {
+      e.preventDefault();
+      const pseudo = document.getElementById('access-pseudo').value.trim();
+      if (!pseudo) return;
+      const isProtected = document.getElementById('access-protect-checkbox').checked;
+
+      currentUser.pseudo = pseudo;
+      currentUser.gender = selectedAccessGender;
+      currentUser.age = parseInt(document.getElementById('access-age').value) || 24;
+      currentUser.location = document.getElementById('access-location').value;
+      currentUser.isRegistered = isProtected;
+
+      document.getElementById('user-pill-pseudo').innerText = currentUser.pseudo;
+      document.getElementById('user-pill-pseudo').className = `block font-bold truncate max-w-[90px] leading-tight ${getGenderClass(currentUser.gender)}`;
+      document.getElementById('user-pill-status').innerText = isProtected ? '✨ Protégé' : 'Invité';
+
+      localStorage.setItem('algerie_cool_entered', 'true');
+      closeAccessModal();
+      renderUsers();
+      confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+      playJoinBip();
+    };
+
+    // --- Init ---
+    window.onload = () => {
+      lucide.createIcons();
+      renderMessages();
+      renderUsers();
+      buildThemeCards();
+      applyWallpaper(WALLPAPERS.dark[0]);
+      setTimeout(playJoinBip, 600);
+
+      if (!localStorage.getItem('algerie_cool_entered')) {
+        openAccessModal();
+      } else {
+        closeAccessModal();
+      }
+    };
+  </script>
+</body>
+</html>

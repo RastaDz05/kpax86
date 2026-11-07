@@ -1,0 +1,8 @@
+{
+  "name": "Remix Algerie.cool - Tchat DZ \u0026 Webradios Live",
+  "description": "Le tchat nouvelle génération pour l\u0027Algérie et la diaspora en France : salons en direct, webradios en streaming, vidéos YouTube détachables, profils colorés et modération avancée.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

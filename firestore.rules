@@ -1,0 +1,51 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    // Default deny for unmapped paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Users presence & profiles
+    match /users/{userId} {
+      allow read: if isValidId(userId);
+      allow create, update: if isValidId(userId)
+        && incoming().pseudo is string && incoming().pseudo.size() <= 50;
+      allow delete: if false;
+    }
+
+    // Rooms & Live topics
+    match /rooms/{roomId} {
+      allow read: if isValidId(roomId);
+      allow create, update: if isValidId(roomId)
+        && incoming().name is string
+        && incoming().topic is string && incoming().topic.size() <= 300;
+      allow delete: if false;
+
+      // Messages in room
+      match /messages/{messageId} {
+        allow read: if isValidId(roomId) && isValidId(messageId);
+        allow create: if isValidId(roomId) && isValidId(messageId)
+          && incoming().content is string && incoming().content.size() <= 1000
+          && incoming().senderPseudo is string;
+        allow update: if isValidId(roomId) && isValidId(messageId);
+        allow delete: if true; // Admins/modos can clear messages
+      }
+    }
+
+    // Private messages
+    match /private_messages/{messageId} {
+      allow read, write: if isValidId(messageId);
+    }
+  }
+}

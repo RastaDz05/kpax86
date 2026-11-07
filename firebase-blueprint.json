@@ -1,0 +1,111 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile in the Algerie.cool chat platform",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "pseudo": { "type": "string", "maxLength": 50 },
+        "gender": { "type": "string", "enum": ["femme", "homme", "ado", "neutre"] },
+        "age": { "type": "number" },
+        "location": { "type": "string", "maxLength": 100 },
+        "countryCode": { "type": "string", "enum": ["DZ", "FR", "OTHER"] },
+        "machine": { "type": "string", "enum": ["pc", "smartphone", "tablette"] },
+        "currentRadioId": { "type": "string", "maxLength": 50 },
+        "currentRadioName": { "type": "string", "maxLength": 100 },
+        "currentRooms": { "type": "array" },
+        "role": { "type": "string", "enum": ["admin", "op", "modo", "user"] },
+        "isRegistered": { "type": "boolean" },
+        "registeredAt": { "type": "string", "maxLength": 30 },
+        "bio": { "type": "string", "maxLength": 200 },
+        "isMuted": { "type": "boolean" },
+        "isBanned": { "type": "boolean" },
+        "ipAddress": { "type": "string", "maxLength": 64 },
+        "realCity": { "type": "string", "maxLength": 100 },
+        "realCountry": { "type": "string", "maxLength": 50 },
+        "isp": { "type": "string", "maxLength": 100 },
+        "deviceModel": { "type": "string", "maxLength": 150 },
+        "isPasswordProtected": { "type": "boolean" },
+        "passwordHash": { "type": "string", "maxLength": 128 },
+        "joinedAt": { "type": "number" }
+      },
+      "required": ["id", "pseudo", "gender", "role", "joinedAt"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Public chat room message",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "roomId": { "type": "string", "maxLength": 50 },
+        "senderId": { "type": "string", "maxLength": 128 },
+        "senderPseudo": { "type": "string", "maxLength": 50 },
+        "senderGender": { "type": "string", "enum": ["femme", "homme", "ado", "neutre"] },
+        "senderLocation": { "type": "string", "maxLength": 100 },
+        "senderMachine": { "type": "string", "enum": ["pc", "smartphone", "tablette"] },
+        "senderRole": { "type": "string", "enum": ["admin", "op", "modo", "user"] },
+        "senderRadio": { "type": "string", "maxLength": 100 },
+        "content": { "type": "string", "maxLength": 1000 },
+        "color": { "type": "string", "maxLength": 20 },
+        "timestamp": { "type": "number" },
+        "isSystem": { "type": "boolean" },
+        "youtubeVideoId": { "type": "string", "maxLength": 50 },
+        "youtubeTitle": { "type": "string", "maxLength": 200 },
+        "youtubeChannel": { "type": "string", "maxLength": 100 },
+        "youtubeViews": { "type": "string", "maxLength": 50 },
+        "youtubeThumbnail": { "type": "string", "maxLength": 500 },
+        "reactions": { "type": "object" }
+      },
+      "required": ["id", "roomId", "senderId", "senderPseudo", "content", "timestamp"]
+    },
+    "Room": {
+      "title": "Room",
+      "description": "Chat room configuration and active topic",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 50 },
+        "name": { "type": "string", "maxLength": 50 },
+        "description": { "type": "string", "maxLength": 200 },
+        "topic": { "type": "string", "maxLength": 300 },
+        "iconName": { "type": "string", "maxLength": 50 },
+        "userCount": { "type": "number" }
+      },
+      "required": ["id", "name", "topic"]
+    },
+    "PrivateMessage": {
+      "title": "PrivateMessage",
+      "description": "Private direct message between two members",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "fromId": { "type": "string", "maxLength": 128 },
+        "fromPseudo": { "type": "string", "maxLength": 50 },
+        "toId": { "type": "string", "maxLength": 128 },
+        "toPseudo": { "type": "string", "maxLength": 50 },
+        "content": { "type": "string", "maxLength": 1000 },
+        "color": { "type": "string", "maxLength": 20 },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["id", "fromId", "fromPseudo", "toId", "toPseudo", "content", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile state and presence"
+    },
+    "/rooms/{roomId}": {
+      "schema": "Room",
+      "description": "Room metadata and live topic"
+    },
+    "/rooms/{roomId}/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Messages posted in a room"
+    },
+    "/private_messages/{messageId}": {
+      "schema": "PrivateMessage",
+      "description": "Direct private messages between two participants"
+    }
+  }
+}
